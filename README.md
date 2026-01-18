@@ -50,7 +50,10 @@
 ## Задание 2. PostgreSQL
 
 ### 2.1. Пример команды резервирования и восстановления (pg_dump/pg_restore)
-...
+
+**Резервная копия (dump) одной базы в формате custom:**
+```bash
+pg_dump -U postgres -h localhost -p 5432 -F c -f backup.dump mydb
 
 ### 2.1.* Автоматизация процесса
 ...
