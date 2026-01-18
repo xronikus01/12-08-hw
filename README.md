@@ -67,7 +67,7 @@ pg_restore -U postgres -h localhost -p 5432 -d backup_demo_restore backup_demo.d
 
 psql -U postgres -h localhost -p 5432 -d backup_demo_restore -c "SELECT * FROM t;"
 ```
-###2.1.* Можно ли автоматизировать? Как?
+### 2.1.* Можно ли автоматизировать? Как?
 
 Да, можно:
 
@@ -90,6 +90,7 @@ Windows Task Scheduler / cron — запускать pg_dump по расписа
 логирование (в файл)
 
 уведомления при ошибке (Telegram/email)
+
 ---
 
 ---
