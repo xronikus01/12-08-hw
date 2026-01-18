@@ -50,13 +50,46 @@
 ## Задание 2. PostgreSQL
 
 ### 2.1. Пример команды резервирования и восстановления (pg_dump/pg_restore)
+Бэкап одной базы в формате custom:
 
-**Резервная копия (dump) одной базы в формате custom:**
 ```bash
-pg_dump -U postgres -h localhost -p 5432 -F c -f backup.dump mydb
+pg_dump -U postgres -h localhost -p 5432 -F c -f backup_demo.dump backup_demo
 
-### 2.1.* Автоматизация процесса
-...
+Создать пустую базу для восстановления:
+
+createdb -U postgres -h localhost -p 5432 backup_demo_restore
+
+Восстановить бэкап в новую базу:
+
+pg_restore -U postgres -h localhost -p 5432 -d backup_demo_restore backup_demo.dump
+
+Проверка, что данные на месте (пример):
+
+psql -U postgres -h localhost -p 5432 -d backup_demo_restore -c "SELECT * FROM t;"
+###2.1.* Можно ли автоматизировать? Как?
+
+Да, можно:
+
+Windows Task Scheduler / cron — запускать pg_dump по расписанию (каждый день/час).
+
+Скрипт (PowerShell / bash), который:
+
+делает дамп
+
+кладёт файл в папку с датой
+
+удаляет старые бэкапы (например старше 7/30 дней)
+
+Хранение бэкапов:
+
+локально + копия в облако (S3/Google Drive/FTP)
+
+Для прод-систем обычно добавляют:
+
+логирование (в файл)
+
+уведомления при ошибке (Telegram/email)
+---
 
 ---
 
