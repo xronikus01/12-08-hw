@@ -66,6 +66,7 @@ pg_restore -U postgres -h localhost -p 5432 -d backup_demo_restore backup_demo.d
 Проверка, что данные на месте (пример):
 
 psql -U postgres -h localhost -p 5432 -d backup_demo_restore -c "SELECT * FROM t;"
+```
 ###2.1.* Можно ли автоматизировать? Как?
 
 Да, можно:
